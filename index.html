@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudharsan Artifyfx</title>
+<meta name="description" content="G. Sudharsan - Creator, Editor and Artist. Video editing, photo editing, graphic design and gaming content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+ :root{
+   --bg:#050505;
+   --bg-2:#0b0b0c;
+   --red:#E50914;
+   --red-bright:#FF1A1A;
+   --red-deep:#7a0006;
+   --text:#f5f5f5;
+   --muted:#9a9a9a;
+   --glass:rgba(255,255,255,0.04);
+   --glass-border:rgba(229,9,20,0.25);
+   --radius:18px;
+ }
+ *{margin:0;padding:0;box-sizing:border-box}
+ html{scroll-behavior:smooth}
+ body{
+   background:var(--bg);
+   color:var(--text);
+   font-family:'Inter',system-ui,sans-serif;
+   font-weight:300;
+   line-height:1.7;
+   overflow-x:hidden;
+ }
+ body::before{
+   content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+   background:radial-gradient(ellipse at 50% -10%,rgba(229,9,20,.18),transparent 60%),
+              radial-gradient(ellipse at 100% 100%,rgba(229,9,20,.08),transparent 50%);
+ }
+ h1,h2,h3,.logo{font-family:'Cinzel',serif;letter-spacing:.06em}
+ a{color:inherit;text-decoration:none}
+ img{max-width:100%;display:block}
+
+ /* ---------- NAV ---------- */
+ header{
+   position:fixed;top:0;left:0;right:0;z-index:100;
+   display:flex;align-items:center;justify-content:space-between;
+   padding:18px 6vw;
+   background:rgba(5,5,5,.6);
+   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+   border-bottom:1px solid rgba(229,9,20,.15);
+ }
+ .logo{font-size:1.1rem;font-weight:700;color:var(--text)}
+ .logo span{color:var(--red)}
+ nav ul{list-style:none;display:flex;gap:28px}
+ nav a{
+   font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);
+   position:relative;padding:6px 0;transition:color .3s;
+ }
+ nav a::after{
+   content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+   background:var(--red-bright);transition:width .35s;
+ }
+ nav a:hover,nav a.active{color:var(--text)}
+ nav a:hover::after,nav a.active::after{width:100%}
+
+ .burger{display:none;background:none;border:0;cursor:pointer;width:34px;height:24px;position:relative}
+ .burger span{position:absolute;left:0;width:100%;height:2px;background:var(--red-bright);transition:.3s}
+ .burger span:nth-child(1){top:0}
+ .burger span:nth-child(2){top:11px}
+ .burger span:nth-child(3){bottom:0}
+ .burger.open span:nth-child(1){transform:translateY(11px) rotate(45deg)}
+ .burger.open span:nth-child(2){opacity:0}
+ .burger.open span:nth-child(3){transform:translateY(-11px) rotate(-45deg)}
+
+ /* ---------- PAGES ---------- */
+ main{min-height:100vh;padding:120px 6vw 80px;display:none;animation:fade .7s ease}
+ main.active{display:block}
+ @keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+ .eyebrow{
+   display:inline-block;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;
+   color:var(--red-bright);margin-bottom:18px;
+ }
+ .page-title{font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:24px}
+ .page-title em{font-style:normal;color:var(--red)}
+ .lead{font-size:1.1rem;color:#cfcfcf;max-width:720px}
+
+ .glass{
+   background:var(--glass);
+   border:1px solid var(--glass-border);
+   border-radius:var(--radius);
+   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+   padding:32px;
+   transition:transform .4s,box-shadow .4s,border-color .4s;
+ }
+ .glass:hover{transform:translateY(-5px);box-shadow:0 20px 60px -20px rgba(229,9,20,.45);border-color:var(--red)}
+
+ .btn{
+   display:inline-block;padding:14px 34px;border-radius:999px;
+   background:linear-gradient(135deg,var(--red),var(--red-deep));
+   color:#fff;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+   box-shadow:0 10px 30px -10px rgba(229,9,20,.7);transition:transform .3s,box-shadow .3s;
+ }
+ .btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px -10px rgba(255,26,26,.9)}
+ .btn.ghost{background:transparent;border:1px solid var(--red);box-shadow:none}
+ .btn.ghost:hover{background:var(--red)}
+
+ /* ---------- HOME ---------- */
+ .hero{min-height:calc(100vh - 200px);display:flex;flex-direction:column;justify-content:center}
+ .hero h1{font-size:clamp(3rem,9vw,7.5rem);font-weight:700;line-height:.95}
+ .hero h1 .red{color:var(--red);text-shadow:0 0 40px rgba(229,9,20,.5)}
+ .tagline{margin:26px 0 40px;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:var(--muted)}
+ .hero-actions{display:flex;gap:18px;flex-wrap:wrap}
+
+ .grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:50px}
+ .stat h3{font-size:2.4rem;color:var(--red-bright);font-weight:700}
+ .stat p{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.2em}
+
+ /* ---------- ABOUT / EDU / SKILLS ---------- */
+ .two-col{display:grid;gap:40px;grid-template-columns:1fr 1fr;align-items:center}
+ .info-list{list-style:none;margin-top:20px}
+ .info-list li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;gap:20px}
+ .info-list li span:first-child{color:var(--muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.2em;padding-top:4px}
+ .info-list li span:last-child{text-align:right}
+
+ .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+ .chip{
+   padding:10px 20px;border-radius:999px;border:1px solid var(--glass-border);
+   background:rgba(229,9,20,.06);font-size:.85rem;transition:.3s;
+ }
+ .chip:hover{background:var(--red);border-color:var(--red)}
+
+ .bar-wrap{margin-bottom:26px}
+ .bar-head{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:8px}
+ .bar{height:6px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden}
+ .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red-deep),var(--red-bright));border-radius:10px}
+
+ /* ---------- PROJECTS / WORK ---------- */
+ .work-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:50px}
+ .card{padding:0;overflow:hidden}
+ .thumb{
+   aspect-ratio:4/3;position:relative;
+   background:
+     radial-gradient(circle at 30% 20%,rgba(255,26,26,.5),transparent 55%),
+     linear-gradient(160deg,#1a0205,#050505 70%);
+   display:flex;align-items:center;justify-content:center;
+   font-family:'Cinzel',serif;color:rgba(255,255,255,.25);font-size:.8rem;letter-spacing:.3em;
+ }
+ .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+ .card .body{padding:26px}
+ .card h3{font-size:1.1rem;margin-bottom:8px}
+ .card p{color:var(--muted);font-size:.92rem}
+ .tag{display:inline-block;margin-top:14px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-bright)}
+
+ /* ---------- SOCIAL ---------- */
+ .social-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:50px}
+ .social{padding:28px;text-align:left}
+ .social small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;font-size:.66rem;margin-bottom:8px}
+ .social strong{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:500}
+
+ /* ---------- CONTACT ---------- */
+ .contact-box{text-align:center;padding:70px 30px;margin-top:40px}
+ .contact-box h2{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:16px}
+ .contact-box h2 span{color:var(--red)}
+ .contact-lines{margin:34px 0;display:flex;flex-direction:column;gap:14px;align-items:center}
+ .contact-lines a{color:var(--text);border-bottom:1px solid var(--red);padding-bottom:3px}
+ .contact-lines a:hover{color:var(--red-bright)}
+
+ footer{
+   text-align:center;padding:40px 6vw;color:#555;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;
+   border-top:1px solid rgba(229,9,20,.12);
+ }
+
+ /* ---------- RESPONSIVE ---------- */
+ @media (max-width:860px){
+   .burger{display:block;z-index:120}
+   nav{
+     position:fixed;inset:0;background:rgba(5,5,5,.97);
+     display:flex;align-items:center;justify-content:center;
+     transform:translateX(100%);transition:transform .45s ease;
+   }
+   nav.open{transform:none}
+   nav ul{flex-direction:column;align-items:center;gap:30px}
+   nav a{font-size:1rem}
+   .two-col{grid-template-columns:1fr}
+   main{padding:110px 6vw 60px}
+ }
+ @media (max-width:480px){
+   header{padding:16px 5vw}
+   main{padding:100px 5vw 50px}
+   .glass{padding:24px}
+   .info-list li{flex-direction:column;gap:4px}
+   .info-list li span:last-child{text-align:left}
+ }
+ @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+ <a href="#home" class="logo">AS <span>ARTIFYFX</span></a>
+ <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+ <nav id="nav">
+   <ul>
+     <li><a href="#home" data-link>Home</a></li>
+     <li><a href="#about" data-link>About</a></li>
+     <li><a href="#education" data-link>Education</a></li>
+     <li><a href="#skills" data-link>Skills</a></li>
+     <li><a href="#projects" data-link>Projects</a></li>
+     <li><a href="#work" data-link>Creative Work</a></li>
+     <li><a href="#socials" data-link>Socials</a></li>
+     <li><a href="#contact" data-link>Contact</a></li>
+   </ul>
+ </nav>
+</header>
+
+<!-- HOME -->
+<main id="home" data-page>
+ <section class="hero">
+   <span class="eyebrow">Creator • Editor • Artist</span>
+   <h1>SUDHARSAN<br><span class="red">ARTIFYFX</span></h1>
+   <p class="tagline">Frame by Frame Creator</p>
+   <div class="hero-actions">
+     <a class="btn" href="#work" data-link>View Work</a>
+     <a class="btn ghost" href="#contact" data-link>Let's Create</a>
+   </div>
+ </section>
+ <div class="grid">
+   <div class="glass stat"><h3>Video</h3><p>Editing &amp; Reels</p></div>
+   <div class="glass stat"><h3>Photo</h3><p>Editing &amp; Retouch</p></div>
+   <div class="glass stat"><h3>Design</h3><p>Posters &amp; Digital Art</p></div>
+   <div class="glass stat"><h3>Gaming</h3><p>Content &amp; Edits</p></div>
+ </div>
+</main>
+
+<!-- ABOUT -->
+<main id="about" data-page>
+ <span class="eyebrow">About</span>
+ <h2 class="page-title">The Story Behind <em>the Frame</em></h2>
+ <div class="two-col">
+   <div>
+     <p class="lead">I am G. Sudharsan, known online as Sudharsan Artifyfx. I create video edits, photo edits, posters, reels and digital art, with a cinematic style built frame by frame.</p>
+     <ul class="info-list">
+       <li><span>Full Name</span><span>G. Sudharsan</span></li>
+       <li><span>Brand</span><span>Sudharsan Artifyfx</span></li>
+       <li><span>Focus</span><span>Editing • Design • Art</span></li>
+       <li><span>Based In</span><span>Tamil Nadu, India</span></li>
+     </ul>
+   </div>
+   <div class="glass">
+     <h3 style="margin-bottom:14px">Career Interests</h3>
+     <p class="lead" style="font-size:1rem">Creative design and software development. Combining visual artistry with technology to build things people remember.</p>
+     <div class="chips">
+       <span class="chip">Creative Design</span>
+       <span class="chip">Software Development</span>
+       <span class="chip">Information Technology</span>
+     </div>
+   </div>
+ </div>
+</main>
+
+<!-- EDUCATION -->
+<main id="education" data-page>
+ <span class="eyebrow">Education</span>
+ <h2 class="page-title">Academic <em>Background</em></h2>
+ <div class="glass" style="max-width:760px">
+   <h3 style="font-size:1.3rem;margin-bottom:10px">B.Tech – Information Technology</h3>
+   <p class="lead" style="font-size:1rem">P.A. College of Engineering and Technology, Pollachi</p>
+   <p style="color:var(--muted);margin-top:14px">Program focus: programming fundamentals, data structures, databases and applied software projects.</p>
+ </div>
+</main>
+
+<!-- SKILLS -->
+<main id="skills" data-page>
+ <span class="eyebrow">Skills</span>
+ <h2 class="page-title">Tools of the <em>Trade</em></h2>
+ <div class="two-col">
+   <div class="glass">
+     <h3 style="margin-bottom:20px">Technical</h3>
+     <div class="bar-wrap"><div class="bar-head"><span>Python</span></div><div class="bar"><i style="width:80%"></i></div></div>
+     <div class="bar-wrap"><div class="bar-head"><span>Java</span></div><div class="bar"><i style="width:70%"></i></div></div>
+     <div class="bar-wrap"><div class="bar-head"><span>Data Structures</span></div><div class="bar"><i style="width:72%"></i></div></div>
+     <div class="bar-wrap"><div class="bar-head"><span>NumPy &amp; Pandas</span></div><div class="bar"><i style="width:65%"></i></div></div>
+   </div>
+   <div class="glass">
+     <h3 style="margin-bottom:20px">Creative</h3>
+     <div class="chips">
+       <span class="chip">Video Editing</span>
+       <span class="chip">Photo Editing</span>
+       <span class="chip">Graphic Design</span>
+       <span class="chip">Poster Design</span>
+       <span class="chip">Reels</span>
+       <span class="chip">Digital Art</span>
+     </div>
+   </div>
+ </div>
+</main>
+
+<!-- PROJECTS -->
+<main id="projects" data-page>
+ <span class="eyebrow">Projects</span>
+ <h2 class="page-title">Built with <em>Code</em></h2>
+ <div class="work-grid">
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Digital Lost &amp; Found System</h3><p>A system to log, search and recover lost items.</p><span class="tag">Software</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Smart URL Shortener</h3><p>Shortens links and tracks them for easy sharing.</p><span class="tag">Software</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>AI Student Study Planner</h3><p>Builds study schedules tailored to each student.</p><span class="tag">AI</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Green Smart Plant Monitoring</h3><p>Monitors plant conditions to support healthy growth.</p><span class="tag">IoT</span></div></div>
+ </div>
+</main>
+
+<!-- CREATIVE WORK -->
+<main id="work" data-page>
+ <span class="eyebrow">Creative Work</span>
+ <h2 class="page-title">Frames That <em>Speak</em></h2>
+ <div class="work-grid">
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Cinematic Edits</h3><p>Color-graded, story-driven video edits.</p><span class="tag">Video</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Short-Form Reels</h3><p>Punchy, scroll-stopping reels for creators.</p><span class="tag">Reels</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Photo Retouching</h3><p>Clean, dramatic photo edits and grading.</p><span class="tag">Photo</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Poster Design</h3><p>Bold posters with strong typography.</p><span class="tag">Design</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Digital Art</h3><p>Original artwork and creative designs.</p><span class="tag">Art</span></div></div>
+   <div class="glass card"><div class="thumb"><img src="images/cover.jpg" alt="Sudharsan Artifyfx"></div><div class="body"><h3>Gaming Content</h3><p>Gaming edits and highlight content.</p><span class="tag">Gaming</span></div></div>
+ </div>
+</main>
+
+<!-- SOCIALS -->
+<main id="socials" data-page>
+ <span class="eyebrow">Socials</span>
+ <h2 class="page-title">Find Me <em>Online</em></h2>
+ <div class="social-grid">
+   <a class="glass social" href="https://www.instagram.com/sudharsan_artifyfx" target="_blank" rel="noopener"><small>Instagram • Main</small><strong>@sudharsan_artifyfx</strong></a>
+   <a class="glass social" href="https://www.instagram.com/sudharsan_artifyfxx" target="_blank" rel="noopener"><small>Instagram • Second</small><strong>@sudharsan_artifyfxx</strong></a>
+   <a class="glass social" href="https://youtube.com/@babyy_1213" target="_blank" rel="noopener"><small>YouTube</small><strong>@babyy_1213</strong></a>
+   <div class="glass social"><small>Gaming IGN</small><strong>AS Baby 4x</strong></div>
+   <div class="glass social"><small>Editing Lab</small><strong>AS_Edit_Lab</strong></div>
+   <div class="glass social"><small>Gaming Lab</small><strong>as_gaming_lab</strong></div>
+ </div>
+</main>
+
+<!-- CONTACT -->
+<main id="contact" data-page>
+ <div class="glass contact-box">
+   <span class="eyebrow">Contact</span>
+   <h2>LET'S CREATE SOMETHING <span>EPIC</span></h2>
+   <p class="lead" style="margin:0 auto">Open for collaborations, edits, posters and creative projects.</p>
+   <div class="contact-lines">
+     <a href="mailto:sudharsanartifyfx@gmail.com">sudharsanartifyfx@gmail.com</a>
+     <a href="tel:+919025264816">+91 90252 64816</a>
+     <a href="https://www.instagram.com/sudharsan_artifyfx" target="_blank" rel="noopener">Instagram DM</a>
+   </div>
+   <a class="btn" href="mailto:sudharsanartifyfx@gmail.com">Start a Project</a>
+ </div>
+</main>
+
+<footer>© <span id="year"></span> Sudharsan Artifyfx • Frame by Frame</footer>
+
+<script>
+ const pages = [...document.querySelectorAll('[data-page]')];
+ const links = [...document.querySelectorAll('[data-link]')];
+ const nav = document.getElementById('nav');
+ const burger = document.getElementById('burger');
+
+ function show(id){
+   const target = document.getElementById(id) || document.getElementById('home');
+   pages.forEach(p => p.classList.toggle('active', p === target));
+   links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + target.id));
+   window.scrollTo({top:0,behavior:'instant'});
+ }
+
+ function route(){ show(location.hash.replace('#','') || 'home'); }
+
+ burger.addEventListener('click', () => {
+   burger.classList.toggle('open');
+   nav.classList.toggle('open');
+ });
+ links.forEach(a => a.addEventListener('click', () => {
+   burger.classList.remove('open');
+   nav.classList.remove('open');
+ }));
+
+ window.addEventListener('hashchange', route);
+ route();
+ document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
